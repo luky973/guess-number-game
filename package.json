@@ -1,1 +1,17 @@
-npm init -y
+{
+  "name": "guess-number-game",
+  "version": "1.0.0",
+  "description": "Jednoduchá hra hádání čísla",
+  "main": "index.js",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build"
+  },
+  "dependencies": {
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
+  },
+  "devDependencies": {},
+  "license": "MIT"
+}
+
