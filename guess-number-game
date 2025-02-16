@@ -1,0 +1,48 @@
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
+import { motion } from "framer-motion";
+
+export default function GuessNumberGame() {
+  const [guess, setGuess] = useState("");
+  const [message, setMessage] = useState("");
+  const [score, setScore] = useState(0);
+  const [target, setTarget] = useState(Math.floor(Math.random() * 11));
+
+  const checkGuess = () => {
+    const numGuess = parseInt(guess, 10);
+    if (isNaN(numGuess) || numGuess < 0 || numGuess > 10) {
+      setMessage("Zadejte platné číslo mezi 0 a 10.");
+      return;
+    }
+    if (numGuess === target) {
+      setMessage("Správně! Získáváte bod.");
+      setScore(score + 1);
+      setTarget(Math.floor(Math.random() * 11));
+    } else {
+      setMessage("Špatně, zkuste to znovu.");
+    }
+  };
+
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+      <Card className="p-6 shadow-lg rounded-2xl bg-white">
+        <CardContent className="flex flex-col items-center space-y-4">
+          <h1 className="text-2xl font-bold">Hádej číslo (0-10)</h1>
+          <Input
+            type="number"
+            value={guess}
+            onChange={(e) => setGuess(e.target.value)}
+            className="w-24 text-center"
+          />
+          <Button onClick={checkGuess}>Odeslat</Button>
+          <motion.p className="text-lg font-semibold" animate={{ opacity: [0, 1] }}>
+            {message}
+          </motion.p>
+          <p className="text-xl font-bold">Skóre: {score}</p>
+        </CardContent>
+      </Card>
+    </div>
+  );
+}
