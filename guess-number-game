@@ -1,3 +1,8 @@
+rm -rf node_modules package-lock.json
+npm cache clean --force
+npm install
+
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
